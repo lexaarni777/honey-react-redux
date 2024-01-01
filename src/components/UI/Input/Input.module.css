@@ -1,0 +1,12 @@
+.Input{
+    margin-bottom: 15px;
+}
+
+.Input span{
+    color: red
+}
+
+
+.Input.invalid {
+    color: red
+}
