@@ -29,11 +29,7 @@ function ProductCard(props){
                 to={{pathname:'/counter/'+ props.id}}
                 state = {{id: props.id}}
                 >Посмотреть</NavLink>
-            {isAuth?
-            <button onClick={() => dispatch(removeProduct(idProd))}>Удалить</button>
-            :null
-            }
-            
+            {isAuth?<button onClick={() => dispatch(removeProduct(idProd))}>Удалить</button>:null}
             <button onClick={() => dispatch(postCart({idProd, id, cart}))}>Добавить в корзину</button>
          </div>
     )

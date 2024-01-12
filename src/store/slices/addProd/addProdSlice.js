@@ -6,6 +6,9 @@ const initialState = {
         prise: '',
         description: '',
         img: '',
+    },
+    editProd:{
+        edit: false,
     }
 }
 
@@ -27,8 +30,11 @@ const addProdSlice = createSlice({
                 description: '',
                 img: '',
             }
+        },
+        editProdBoolean:(state, action)=>{
+            state.editProd.edit = action.payload
         }
     }
 })
-export const {imputAddProd, imgAddProd, nullImputAddProd} = addProdSlice.actions
+export const {imputAddProd, imgAddProd, nullImputAddProd, editProdBoolean} = addProdSlice.actions
 export default addProdSlice.reducer

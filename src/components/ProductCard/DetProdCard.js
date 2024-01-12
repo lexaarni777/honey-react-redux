@@ -7,73 +7,92 @@ import { postCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
 import { useDetProd } from "../../hooks/prodDetCard";
 import { useSelector } from "react-redux";
-function DetProdCard(){
+import Input from './../UI/Input/Input';
+import { editProdBoolean } from "../../store/slices/addProd/addProdSlice";
+import { render } from 'react-dom';
 
-
+function DetProdCard() {
+    const { isAdmin, isAuth } = useAuth();
     const location = useLocation();
-    const cart = useSelector(state => state.cart)
-    const idProd = location.state.id //Получаем id продукта
-    const {id} = useAuth(); //Получаем id и корзину авторизованного пользователя
-    const {product} = useDetProd(idProd); //получем продукт из стейта 
-    const dispatch = useDispatch()
+    const {cart} = useSelector(state => state.cart);
+    const {isEdit} = useSelector(state => state.addProd.editProd.edit);
+    const idProd = location.state.id; // Получаем id продукта
+    const { id } = useAuth(); // Получаем id и корзину авторизованного пользователя
+    const { product } = useDetProd(idProd); // Получаем продукт из стейта
+    const dispatch = useDispatch();
+    {console.log('1', isAuth, isAdmin)}
+    console.log('jhvjvj', idProd);
+    console.log(cart);
+    console.log(id);
 
-    console.log('jhvjvj' + idProd)
-    console.log(cart)
-    console.log(id)
+    const renderAddToCartButton = () => (
+        console.log('2', isAuth, isAdmin),
+        isAuth ? (
+            <button onClick={() => dispatch(postCart({ idProd, id, cart }))}>
+                Добавить в корзину
+            </button>
+        ) : null
+    );
 
-//     function clickAddCart(){ //функция добавления товара в корзину
-        
-//         const db = getDatabase(); //подключение к базе данных Firebase
-    
-//         let newCart = Object.assign({}, cart) //создаем копию корзины пользователя из стейта
-//         console.log(newCart)
-//         console.log(idProd)
+    const renderEditButton = () => (
+        console.log('3', isAuth, isAdmin, ),
+        isAdmin && isAuth ? (
+            <button onClick={() => dispatch(editProdBoolean(true))}>
+                Редактировать
+            </button>
+        ) : null
+    );
 
-//         console.log(newCart[idProd])
+    const onChangeInput = event => {
+        event.preventDefault()
 
-//         if(newCart[idProd]){
-//             newCart[idProd] ++;
-//         }else{
-//             newCart[idProd] = 1;
-//         }
-//         console.log(id)
-//         const updates = {}
-//         updates['/cart/'+ id] = newCart
-//         return update(ref(db), updates)
-// };
+    };
 
-    function prods(){
-        
- 
-        return (
+
+    const renderProduct = () =>{
+        isEdit&&isAdmin&&isAuth ? (
+            <form>
+            <Input
+                        label='Наименование товара'
+                        type='text'
+                        name='name'
+                        value={product.name}
+            ></Input>
+            <Input
+                        label='Цена'
+                        name='prise'
+                        type='number'
+                        onChange={onChangeInput}
+                        value={product.prise}
+                    ></Input>
+            <Input
+                label='Описание товара'
+                        name='description'
+                        type='text'
+                        onChange={onChangeInput}
+                        value={product.description}
+            ></Input>
             
-            <div>
-            <p>{product.name}</p>
-            <p>{product.prise}</p>
-            <p>{product.description}</p>
-            <img src={product.img} alt="альтернативный текст"></img>
-            <button onClick={() => dispatch(postCart({idProd, id, cart}))}>Добавить в корзину</button>
-            </div>
-        );
-        
-  
-    }
-  
+            </form>
+        ) : <div>
+        {console.log('4', isAuth, isAdmin)}
+  <p>{product.name}</p>
+  <p>{product.prise}</p>
+  <p>{product.description}</p>
+  <img src={product.img} alt="альтернативный текст"></img>
+  {renderAddToCartButton()}
+  {renderEditButton()}
+  {renderProduct()}
+</div>
+    };
 
-        
-    
-    
-    
 
-   
-    return(
-        
-       < div>
-            
-            {prods()}
-          
-         </div>
-    )
+
+    return (
+        <div>
+            {renderProduct()}
+        </div>
+    );
 }
 
-export default DetProdCard
+export default DetProdCard;

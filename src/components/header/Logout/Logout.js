@@ -142,6 +142,8 @@ const Logout = () => {
                         // cart: dispath(getCart(user.uid))
                     }));
                     dispath(getCart(user.uid));
+                    localStorage.setItem('token', user.accessToken)
+                    localStorage.setItem('userId', user.uid)
                     navigate('/');
                 })
                 .catch(console.error)
@@ -158,6 +160,8 @@ const Logout = () => {
                         token: user.accessToken,
                         // cart: {}
                     }));
+                    localStorage.setItem('token', user.accessToken)
+                    localStorage.setItem('userId', user.uid)
                     navigate('/');
                 })
                 .catch(console.error)
