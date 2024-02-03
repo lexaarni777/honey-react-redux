@@ -14,22 +14,27 @@ function Header() {
     if(isAuth){
         navigation = (
             
-                <React.Fragment>
-                    <Logo/>
+                <div className={classes.Container}>
+                    <div className={classes.headerUpper}>
+                        <Logo/>
+                        <ExitUser/>
+                    </div>
                     <Navigation/>
-                    <ExitUser/>
-                </React.Fragment>
+                </div>
             
             )
         
     }else{
         navigation = (
             
-                <React.Fragment>
+                 <div className={classes.Container}>
+                    <div className={classes.headerUpper}>
                     <Logo/>
-                    <Navigation/>
                     <Auth/>
-                </React.Fragment>
+                    </div>
+                    
+                    <Navigation/>
+                </div>
             
             )
     }

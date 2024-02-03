@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeProduct } from "../../store/slices/product/fetchProductSlice";
 import { postCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
+import { editProdBoolean } from "../../store/slices/addProd/addProdSlice";
 
 function ProductCard(props){
     
@@ -29,6 +30,11 @@ function ProductCard(props){
                 to={{pathname:'/counter/'+ props.id}}
                 state = {{id: props.id}}
                 >Посмотреть</NavLink>
+                <NavLink 
+                to={{pathname:'/counter/'+ props.id}}
+                state = {{id: props.id}}
+                onClick={() => dispatch(editProdBoolean(true))}
+                >редактировать</NavLink>
             {isAuth?<button onClick={() => dispatch(removeProduct(idProd))}>Удалить</button>:null}
             <button onClick={() => dispatch(postCart({idProd, id, cart}))}>Добавить в корзину</button>
          </div>

@@ -1,8 +1,14 @@
 .Navigation{
     width: 960px;
+    text-decoration	: none;
 }
 .Navigation ul{
     list-style: none;
     display: flex;
     justify-content: space-evenly ;
+    text-decoration	: none;
+}
+.Navigation ul li a{
+    color: white;
+    text-decoration: none;
 }

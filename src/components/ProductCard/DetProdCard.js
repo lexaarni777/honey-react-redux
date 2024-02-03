@@ -10,12 +10,13 @@ import { useSelector } from "react-redux";
 import Input from './../UI/Input/Input';
 import { editProdBoolean } from "../../store/slices/addProd/addProdSlice";
 import { render } from 'react-dom';
+import { imputUpdateProd, updateProd } from "../../store/slices/addProd/addProdSlice";
 
 function DetProdCard() {
     const { isAdmin, isAuth } = useAuth();
     const location = useLocation();
     const {cart} = useSelector(state => state.cart);
-    const {isEdit} = useSelector(state => state.addProd.editProd.edit);
+    const {edit} = useSelector(state => state.addProd.editProd);
     const idProd = location.state.id; // Получаем id продукта
     const { id } = useAuth(); // Получаем id и корзину авторизованного пользователя
     const { product } = useDetProd(idProd); // Получаем продукт из стейта
@@ -24,11 +25,14 @@ function DetProdCard() {
     console.log('jhvjvj', idProd);
     console.log(cart);
     console.log(id);
+    console.log(product);
+    console.log(edit);
 
     const renderAddToCartButton = () => (
         console.log('2', isAuth, isAdmin),
+
         isAuth ? (
-            <button onClick={() => dispatch(postCart({ idProd, id, cart }))}>
+            <button onClick={() => dispatch(postCart({ idProd, id, cart }), console.log(cart))}>
                 Добавить в корзину
             </button>
         ) : null
@@ -44,13 +48,18 @@ function DetProdCard() {
     );
 
     const onChangeInput = event => {
-        event.preventDefault()
-
+        const val = {
+            name: event.target.name,
+            value: event.target.value
+        }
+        dispatch(imputUpdateProd(val))
     };
 
 
     const renderProduct = () =>{
-        isEdit&&isAdmin&&isAuth ? (
+        console.log(edit, isAdmin, isAuth);
+        return(
+        edit&&isAdmin&&isAuth ? 
             <form>
             <Input
                         label='Наименование товара'
@@ -72,9 +81,14 @@ function DetProdCard() {
                         onChange={onChangeInput}
                         value={product.description}
             ></Input>
+
+            <button onClick={()=>dispatch(updateProd())}>
+                Обновить
+            </button>
+
             
             </form>
-        ) : <div>
+         : <div>
         {console.log('4', isAuth, isAdmin)}
   <p>{product.name}</p>
   <p>{product.prise}</p>
@@ -82,9 +96,8 @@ function DetProdCard() {
   <img src={product.img} alt="альтернативный текст"></img>
   {renderAddToCartButton()}
   {renderEditButton()}
-  {renderProduct()}
 </div>
-    };
+    )};
 
 
 
