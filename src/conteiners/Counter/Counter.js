@@ -1,6 +1,6 @@
 import React, {Component, useEffect} from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
-
+import classes from "./Counter.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/slices/product/fetchProductSlice";
 
@@ -49,15 +49,15 @@ function Counter(){
         }
         
 }
-
-
     return(
-        <div>
+        <div className={classes.Container}>
             <h1>Прилавок</h1>
+            <div className={classes.Counter}>
             {
             renderProducts()
             }
             </div>
+        </div>
     )
 }
 

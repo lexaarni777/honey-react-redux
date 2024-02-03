@@ -1,0 +1,10 @@
+.Container{
+    width: 960px;
+    margin: 0 auto;
+}
+
+.Counter{
+    display: flex;
+    
+    margin: 0 auto;
+}

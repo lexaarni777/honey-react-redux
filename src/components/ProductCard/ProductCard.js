@@ -7,6 +7,8 @@ import { removeProduct } from "../../store/slices/product/fetchProductSlice";
 import { postCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
 import { editProdBoolean } from "../../store/slices/addProd/addProdSlice";
+import classes from "./ProductCard.module.css"
+
 
 function ProductCard(props){
     
@@ -21,15 +23,15 @@ function ProductCard(props){
  
 
      return(
-        <div>
+        <div className={classes.ProductCard}>
             <h1>{props.name}</h1>
-            <img src={product[idProd].img} alt="альтернативный текст"></img>
-            <p>{props.prise}</p>
+            
 
             <NavLink 
                 to={{pathname:'/counter/'+ props.id}}
                 state = {{id: props.id}}
-                >Посмотреть</NavLink>
+                ><img src={product[idProd].img} alt="альтернативный текст"></img></NavLink>
+<p>{props.prise}</p>
                 <NavLink 
                 to={{pathname:'/counter/'+ props.id}}
                 state = {{id: props.id}}
