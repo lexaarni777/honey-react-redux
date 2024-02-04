@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 
-export function useDetProd(id){
-    console.log(id)
-    const {products} = useSelector(state => state.products);//ма обращаемся к стейту получаем юсера и извлекаем его данные
-    console.log(products)
-    const product = products[id]
+export function useDetProd(){
+    
+    const {updateProd} = useSelector(state => state.addProd);//ма обращаемся к стейту получаем юсера и извлекаем его данные
+    
+    const product = updateProd
     console.log(product)
     return{//при выхове жанной функции она возвращает необходимые значения
         product

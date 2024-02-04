@@ -59,13 +59,14 @@ function DetProdCard() {
     const renderProduct = () =>{
         console.log(edit, isAdmin, isAuth);
         return(
-        edit&&isAdmin&&isAuth ? 
+        isAdmin&&isAuth ? 
             <form>
             <Input
                         label='Наименование товара'
                         type='text'
                         name='name'
                         value={product.name}
+                        onChange={onChangeInput}
             ></Input>
             <Input
                         label='Цена'

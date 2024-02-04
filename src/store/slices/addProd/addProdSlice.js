@@ -27,7 +27,13 @@ const addProdSlice = createSlice({
             console.log(action.payload)
         },
         imputUpdateProd:(state, action) => {
+            console.log(action)
             state.updateProd[action.payload.name] = action.payload.value
+            console.log(action.payload)
+        },
+        UpdateProd:(state, action) => {
+            console.log(action)
+            state.updateProd = action.payload
             console.log(action.payload)
         },
         imgAddProd:(state, action)=>{
@@ -50,5 +56,5 @@ const addProdSlice = createSlice({
         },
     }
 })
-export const {imputAddProd, imgAddProd, nullImputAddProd, editProdBoolean, updateProd, imputUpdateProd} = addProdSlice.actions
+export const {imputAddProd, imgAddProd, nullImputAddProd,  editProdBoolean, updateProd, imputUpdateProd, UpdateProd} = addProdSlice.actions
 export default addProdSlice.reducer
