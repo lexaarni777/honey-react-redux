@@ -14,6 +14,7 @@ import { useAuth } from './hooks/userAuth';
 import { useDispatch } from "react-redux";
 import { removeUser } from "./store/slices/user/userSlice";
 import DetProdCard from "./components/ProductCard/DetProdCard";
+import UpdateProd from "./conteiners/Admin/UpdateProd/UpdateProd";
 
 function App() {
   const dispath = useDispatch();
@@ -27,6 +28,8 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path='/counter' element={<Counter/>}/>
           <Route path='/counter/:id' element={<DetProdCard/>}/>
+          <Route path='/updateprod/:id' element={<UpdateProd/>}/>
+          
           <Route path='/auth' element={<Auth/>}/>
           <Route path='/logout' element={<Logout/>}/>
           <Route path='/admin/addproduct' element={<AddProduct/>}/>

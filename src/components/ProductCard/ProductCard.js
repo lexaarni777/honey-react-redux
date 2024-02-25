@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeProduct } from "../../store/slices/product/fetchProductSlice";
 import { postCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
-import { editProdBoolean } from "../../store/slices/addProd/addProdSlice";
 import classes from "./ProductCard.module.css"
 import Button from "../UI/Input/Button/Button";
-import { UpdateProd } from "../../store/slices/addProd/addProdSlice";
+import { updateProd } from "../../store/slices/addProd/addProdSlice";
 
 function ProductCard(props){
     
@@ -43,10 +42,10 @@ function ProductCard(props){
                         value="Удалить"
                     ></Button>
                     <NavLink 
-                        to={{pathname:'/counter/'+ props.id}}
+                        to={{pathname:'/updateprod/'+ props.id}}
                         state = {{id: props.id}}
                         onClick={
-                            () => dispatch( UpdateProd(product[idProd]))}
+                            () => dispatch(updateProd(product[idProd]))}
                         >редактировать
                     </NavLink>
                 </div>

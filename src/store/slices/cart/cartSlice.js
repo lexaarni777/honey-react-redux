@@ -36,6 +36,7 @@ export const postCart = createAsyncThunk(
        
                 
                     const db = getDatabase();
+                    console.log(db)
                     await set(ref(db, 'cart/' + id), {
                       ...cart
                     });

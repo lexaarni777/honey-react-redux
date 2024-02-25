@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { getDatabase, ref, set } from "firebase/database";
+import { getProducts } from "../product/fetchProductSlice";
 const initialState = {
     addProd: {
         name: '',
@@ -12,11 +13,32 @@ const initialState = {
         prise: '',
         description: '',
         img: '',
-    },
-    editProd:{
-        edit: false,
     }
 }
+
+export const updateProdFinishAsync = createAsyncThunk(
+    'prod/updateProdFinishAsync', async (arr, {rejectWithValue, dispatch}) => {
+        console.log(arr)
+        const update = Object.assign({},arr.updateProd)
+        const idProd = arr.idProd
+        console.log(update, idProd)
+        console.log('1')
+        
+        try{
+            const db = getDatabase();
+            await set(ref(db, 'products/' + idProd),{
+                ...update
+            });
+            console.log('3')
+            dispatch(getProducts())
+            console.log('4')
+        }catch(e){
+            console.log(e)
+        }
+        
+    }
+
+)
 
 const addProdSlice = createSlice({
     name: 'addProd',
@@ -31,7 +53,7 @@ const addProdSlice = createSlice({
             state.updateProd[action.payload.name] = action.payload.value
             console.log(action.payload)
         },
-        UpdateProd:(state, action) => {
+        updateProd:(state, action) => {
             console.log(action)
             state.updateProd = action.payload
             console.log(action.payload)
@@ -47,14 +69,11 @@ const addProdSlice = createSlice({
                 img: '',
             }
         },
-        editProdBoolean:(state, action)=>{
-            state.editProd.edit = action.payload
-            
-        },
-        updateProd:(state, action)=>{
-            state.editProd.edit = action.payload
+        updateProdFinish:(state, action)=>{
+            console.log(state)
+            console.log(action)
         },
     }
 })
-export const {imputAddProd, imgAddProd, nullImputAddProd,  editProdBoolean, updateProd, imputUpdateProd, UpdateProd} = addProdSlice.actions
+export const {imputAddProd, imgAddProd, nullImputAddProd,  updateProdFinish, imputUpdateProd, updateProd} = addProdSlice.actions
 export default addProdSlice.reducer

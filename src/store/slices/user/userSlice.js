@@ -31,8 +31,10 @@ const userSlice = createSlice({
             state.email = null;
             state.token = null;
             state.id = null;
+            
             localStorage.removeItem('token')
             localStorage.removeItem('userId')
+            {console.log(state)}
             // state.cart = null;
         },
 
