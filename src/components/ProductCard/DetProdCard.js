@@ -18,6 +18,7 @@ function DetProdCard() {
     const location = useLocation();
     const {cart} = useSelector(state => state.cart);
 
+    console.log(location)
     const {updateProd} = useSelector(state=>state.addProd) 
     
     const idProd = location.state.id; // Получаем id продукта
@@ -56,7 +57,7 @@ function DetProdCard() {
   <p>{product.name}</p>
   <p>{product.prise}</p>
   <p>{product.description}</p>
-  <img src={product.img} alt="альтернативный текст"></img>
+  <img src={product.img} alt={product.name}></img>
   {renderAddToCartButton()}
 </div>
     )};

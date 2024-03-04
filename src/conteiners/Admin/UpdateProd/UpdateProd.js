@@ -11,9 +11,11 @@ import { render } from 'react-dom';
 import { imputUpdateProd, updateProdFinish , updateProdFinishAsync} from "../../../store/slices/addProd/addProdSlice";
 import Button from "../../../components/UI/Input/Button/Button";
 
-function UpdateProd() {
+function UpdateProd(props) {
     const { isAdmin, isAuth } = useAuth();
     const location = useLocation();
+    console.log(props)
+
    
     const {updateProd} = useSelector(state=>state.addProd) 
     

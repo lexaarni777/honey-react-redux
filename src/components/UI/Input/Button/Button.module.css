@@ -23,7 +23,9 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin: 5px auto;
+  
 }
+
 
 .Button:focus {
   color: #fcb100;

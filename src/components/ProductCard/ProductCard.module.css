@@ -4,6 +4,7 @@
 .ProductCard a{
     margin: 0 auto;
     display: block;
+    text-decoration: none;
 }
 .ProductCard img{
     width: 220px;
