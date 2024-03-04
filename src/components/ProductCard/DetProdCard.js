@@ -42,24 +42,17 @@ function DetProdCard() {
         ) : null
     );
 
-
-
-
-
-
-
-
     const renderProduct = () =>{
         console.log(isAdmin, isAuth);
         return(
        <div>
         {console.log('4', isAuth, isAdmin)}
-  <p>{product.name}</p>
-  <p>{product.prise}</p>
-  <p>{product.description}</p>
-  <img src={product.img} alt={product.name}></img>
-  {renderAddToCartButton()}
-</div>
+        <p>{product.name}</p>
+        <p>{product.prise}</p>
+        <p>{product.description}</p>
+        <img src={product.img} alt={product.name}></img>
+        {renderAddToCartButton()}
+        </div>
     )};
 
 

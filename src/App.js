@@ -18,12 +18,22 @@ import UpdateProd from "./conteiners/Admin/UpdateProd/UpdateProd";
 import { getCart } from "./store/slices/cart/cartSlice";
 function App() {
   const dispatch = useDispatch();
-  dispatch(setUser({
-    email: localStorage.email,
-    id: localStorage.userId,
-    token: localStorage.token,
-  }))
-  dispatch(getCart(localStorage.userId))
+  if(localStorage.userId){
+    const nowExpirationDate = new Date(new Date().getTime())
+    console.log(new Date() >= new Date(localStorage.expirationDate))
+    console.log(new Date(), new Date(localStorage.expirationDate))
+    if(new Date() >= new Date(localStorage.expirationDate)){
+      dispatch(removeUser())
+    }else{
+      dispatch(setUser({
+        email: localStorage.email,
+        id: localStorage.userId,
+        token: localStorage.token,
+      }))
+      dispatch(getCart(localStorage.userId))
+    }
+  }
+  
 
   let routes
     if(localStorage.token){
