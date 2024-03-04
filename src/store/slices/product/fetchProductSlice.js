@@ -18,10 +18,7 @@ export const getProducts = createAsyncThunk(//обращение к северу
         }
 )
 
-export
-
-
-const fetchProductsSlice = createSlice({
+export const fetchProductsSlice = createSlice({
     name: 'fetchProducts',
     initialState,
     reducers:{

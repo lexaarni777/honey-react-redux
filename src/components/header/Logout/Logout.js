@@ -123,7 +123,7 @@ const Logout = () => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const submitForm = event => {
@@ -135,15 +135,20 @@ const Logout = () => {
             signInWithEmailAndPassword(auth, email, password)
                 .then(({user}) => {
                     {console.log(user)}
-                    dispath(setUser({ 
+                    dispatch(setUser({ 
                         email: user.email,
                         id: user.uid,
                         token: user.accessToken,
                         // cart: dispath(getCart(user.uid))
                     }));
-                    dispath(getCart(user.uid));
+                    const expirationDate = new Date(new Date().getTime()+3600*1000)
+                    console.log(expirationDate)
+                 
                     localStorage.setItem('token', user.accessToken)
                     localStorage.setItem('userId', user.uid)
+                    localStorage.setItem('email', user.email)
+                    localStorage.setItem('expirationDate', expirationDate)
+                    dispatch(getCart(user.uid));
                     navigate('/');
                 })
                 .catch(console.error)
@@ -154,14 +159,17 @@ const Logout = () => {
             createUserWithEmailAndPassword(auth, email, password)
                 .then(({user}) => {
                     console.log(user);
-                    dispath(setUser({
+                    dispatch(setUser({
                         email: user.email,
                         id: user.uid,
                         token: user.accessToken,
                         // cart: {}
                     }));
+                    const expirationDate = new Date(new Date().getTime()+3600*1000)
                     localStorage.setItem('token', user.accessToken)
                     localStorage.setItem('userId', user.uid)
+                    localStorage.setItem('email', user.email)
+                    localStorage.setItem('expirationDate', expirationDate)
                     navigate('/');
                 })
                 .catch(console.error)

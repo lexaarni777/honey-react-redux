@@ -12,16 +12,21 @@ import Cart from "./conteiners/Cart/Cart";
 import ProductCard from "./components/ProductCard/ProductCard";
 import { useAuth } from './hooks/userAuth';
 import { useDispatch } from "react-redux";
-import { removeUser } from "./store/slices/user/userSlice";
+import { removeUser, setUser } from "./store/slices/user/userSlice";
 import DetProdCard from "./components/ProductCard/DetProdCard";
 import UpdateProd from "./conteiners/Admin/UpdateProd/UpdateProd";
-
+import { getCart } from "./store/slices/cart/cartSlice";
 function App() {
-  const dispath = useDispatch();
-  const {isAuth, email} = useAuth(); 
-  console.log('isAuth' + ' ' + isAuth)
+  const dispatch = useDispatch();
+  dispatch(setUser({
+    email: localStorage.email,
+    id: localStorage.userId,
+    token: localStorage.token,
+  }))
+  dispatch(getCart(localStorage.userId))
+
   let routes
-    if(isAuth){
+    if(localStorage.token){
       routes = (
         <Routes>
           <Route path="/" element={<Main/>}/>

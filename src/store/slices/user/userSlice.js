@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getDatabase, ref, onValue  } from 'firebase/database';
+import { getCart } from "../cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 const initialState = {//задем начальный стейт для пользователя задавая параметры которые нам будут необходимы
     email: null,
@@ -11,7 +13,6 @@ const initialState = {//задем начальный стейт для поль
 
 
 
-
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -19,13 +20,11 @@ const userSlice = createSlice({
         setUser(state, action){//получаем пользователя
             {console.log(state)}
             {console.log(action)}
-            // const cart = cartCard(action.payload.id)
-            // console.log(cart)
+            
             state.email = action.payload.email;
             state.token = action.payload.token;
             state.id = action.payload.id;
-            // state.cart = cart;
-            // console.log(state.cart)
+            
         },
         removeUser(state){//удаляем пользователя из сесии обнуляя его стейт
             state.email = null;
@@ -34,16 +33,10 @@ const userSlice = createSlice({
             
             localStorage.removeItem('token')
             localStorage.removeItem('userId')
+            localStorage.removeItem('expirationDate')
+            localStorage.removeItem('email')
             {console.log(state)}
-            // state.cart = null;
         },
-
-
-        // removeProdCart(state, action){
-
-        // }
-
-
     },
 });
 
