@@ -20,7 +20,7 @@ const Input = props => {
     return(
         <div className={cls.join(' ')}>
             <label htmlFor={htmlFor}>{props.label}</label>
-            <p/>
+            
             <input
                 type={inputType}
                 id={htmlFor}

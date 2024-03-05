@@ -16,6 +16,8 @@ import { removeUser, setUser } from "./store/slices/user/userSlice";
 import DetProdCard from "./components/ProductCard/DetProdCard";
 import UpdateProd from "./conteiners/Admin/UpdateProd/UpdateProd";
 import { getCart } from "./store/slices/cart/cartSlice";
+import { getProducts } from "./store/slices/product/fetchProductSlice";
+
 function App() {
   const dispatch = useDispatch();
   if(localStorage.userId){
@@ -28,6 +30,7 @@ function App() {
         token: localStorage.token,
       }))
       dispatch(getCart(localStorage.userId))
+      dispatch(getProducts())
     }
   }
   

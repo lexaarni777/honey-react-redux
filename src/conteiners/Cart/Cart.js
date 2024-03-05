@@ -1,9 +1,11 @@
 import React from "react"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../components/ProductCart/ProductCart";
-
+import { getProducts } from "../../store/slices/product/fetchProductSlice";
 function Cart(){
     
+
+
     const cart = useSelector(state => state.cart.productsCart)
     const products = useSelector(state => state.products.products)
 
@@ -15,7 +17,7 @@ function Cart(){
         if(cart){
             const cartList = []
             Object.entries(cart).forEach((product, key)=>{
-                console.log('key' , key, 'prod', product)
+                console.log('key' , key, 'prod', product, 'products', products)
                 cartList.push({
                     id: product[0],
                     name: products[product[0]].name,
@@ -41,7 +43,7 @@ function Cart(){
             })
         }else{
             return(
-                <p>пусто блять</p>
+                <p>Корзина пуста</p>
             )
         }
     }

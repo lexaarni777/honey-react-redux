@@ -69,6 +69,34 @@ export const postCart = createAsyncThunk(
     }
  )
 
+ export const imputUpdateProdCart = createAsyncThunk(
+    'cart/imputUpdateProdCart', async(arr, {rejectWithValue, dispatch}) => {
+        console.log(arr)
+        const cart = Object.assign({}, arr.cart.productsCart)
+        console.log(cart)
+        const idProd = arr.idProd
+        const id = arr.id
+        const prodCart = {}
+        prodCart[arr.idProd] = +arr.val
+        const val = +arr.val
+        cart[arr.idProd] = +arr.val
+        console.log(val)
+        console.log(prodCart)
+        console.log(cart)
+        try{
+            const db = getDatabase();
+            await set(ref(db, 'cart/' + id),{
+                ...cart
+            });
+            console.log(val)
+            dispatch(imputUpdateProdCartR(cart))
+        }catch(e){
+            console.log(e)
+        }
+
+    }
+ )
+
 
 
 export const getCart = createAsyncThunk(
@@ -91,7 +119,7 @@ export const cartSlice = createSlice({
     reducers:{
         setCart: (state, action) => {
             state.productsCart = action.payload
-            console.log(state)
+            console.log('setcart', state)
         },
         addProdCart(state, action){
            console.log(action)
@@ -99,7 +127,10 @@ export const cartSlice = createSlice({
         },
         deleteProdInCartR(state, action){
             state.productsCart = action.payload
-        }
+        },
+        imputUpdateProdCartR(state, action){
+            state.productsCart = action.payload
+        },
     },
     extraReducers:{
         [getCart.fulfilled]: () => console.log('fulfiled'),
@@ -108,6 +139,6 @@ export const cartSlice = createSlice({
     }
 })
 
-export const {setCart, addProdCart, deleteProdInCartR} = cartSlice.actions
+export const {setCart, addProdCart, deleteProdInCartR, imputUpdateProdCartR} = cartSlice.actions
 
 export default cartSlice.reducer
