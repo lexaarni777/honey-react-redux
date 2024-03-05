@@ -15,7 +15,7 @@ function UpdateProd(props) {
     const { isAdmin, isAuth } = useAuth();
     const location = useLocation();
     console.log(props)
-
+    console.log(location)
    
     const {updateProd} = useSelector(state=>state.addProd) 
     

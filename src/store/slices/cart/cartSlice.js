@@ -39,13 +39,37 @@ export const postCart = createAsyncThunk(
                     console.log(db)
                     await set(ref(db, 'cart/' + id), {
                       ...cart
-                    });
-                  
+                    });                
                          
         dispatch(addProdCart(cart))
      
     }
 )
+
+ export const deleteProdInCart = createAsyncThunk(
+    'cart/deleteProdInCart', async(arr, {rejectWithValue, dispatch}) => {
+        console.log(arr)
+        const cart = Object.assign({}, arr.cart.productsCart)
+        const idProd = arr.idProd
+        const id = arr.id
+
+        delete cart[idProd]
+
+        console.log(cart)
+        try{
+            const db = getDatabase();
+            await set(ref(db, 'cart/' + id),{
+                ...cart
+            });
+            dispatch(deleteProdInCartR(cart))
+        }catch(e){
+            console.log(e)
+        }
+
+    }
+ )
+
+
 
 export const getCart = createAsyncThunk(
     'cart/getCart', async (id, {rejectWithValue, dispatch}) => {
@@ -60,6 +84,7 @@ export const getCart = createAsyncThunk(
 )
 
 
+
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -72,6 +97,9 @@ export const cartSlice = createSlice({
            console.log(action)
            state.productsCart = action.payload
         },
+        deleteProdInCartR(state, action){
+            state.productsCart = action.payload
+        }
     },
     extraReducers:{
         [getCart.fulfilled]: () => console.log('fulfiled'),
@@ -80,6 +108,6 @@ export const cartSlice = createSlice({
     }
 })
 
-export const {setCart, addProdCart} = cartSlice.actions
+export const {setCart, addProdCart, deleteProdInCartR} = cartSlice.actions
 
 export default cartSlice.reducer

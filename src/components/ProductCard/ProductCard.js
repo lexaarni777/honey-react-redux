@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import { NavLink, Navigate, Link} from "react-router-dom"
+import { NavLink, Navigate, Link, useNavigate} from "react-router-dom"
 import axios from "../../axios/axios"
 import { getDatabase, ref, set} from "firebase/database";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,15 +16,16 @@ function ProductCard(props){
     const idProd = props.id
     const product = useSelector(state => state.products.products)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {id,isAuth,isAdmin} = useAuth()
     const cart = useSelector(state => state.cart)
     // const clickDelitProd = (id) => dispatch(removeProduct(id))
 
     const buttonUpdateProd=()=>{
-        <Navigate replace to = {`/updateprod/'${props.id}`}/>
         dispatch(updateProd(product[idProd]))
         console.log(product[idProd])     
         console.log(`/updateprod/'${props.id}`)
+        
         
     }
 
@@ -53,8 +54,7 @@ function ProductCard(props){
                         <Button
                             onClick= {buttonUpdateProd}
                             value="Редактиовать"
-                        >
-                    </Button>
+                        ></Button>
                     </Link>
                 </div>
             :null}

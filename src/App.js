@@ -19,9 +19,6 @@ import { getCart } from "./store/slices/cart/cartSlice";
 function App() {
   const dispatch = useDispatch();
   if(localStorage.userId){
-    const nowExpirationDate = new Date(new Date().getTime())
-    console.log(new Date() >= new Date(localStorage.expirationDate))
-    console.log(new Date(), new Date(localStorage.expirationDate))
     if(new Date() >= new Date(localStorage.expirationDate)){
       dispatch(removeUser())
     }else{
