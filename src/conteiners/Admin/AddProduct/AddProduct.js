@@ -7,6 +7,7 @@ import { storage } from '../../../firebase';
 import { uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
 import { useDispatch, useSelector} from 'react-redux';
 import { imputAddProd, imgAddProd, nullImputAddProd } from '../../../store/slices/addProd/addProdSlice';
+import Button from '../../../components/UI/Button/Button';
 
 function AddProduct(){
     
@@ -134,14 +135,16 @@ function AddProduct(){
                     <div>
                         <label>
                             <input type='file' onChange={onChangeInputImg}/>
-                            <button
+                            <Button
                                 onClick={clickAddImgProduct}
-                            > Загрузить фото</button>
+                                value="Загрузить фото"
+                            ></Button>
                         </label>
                     </div>
-                    <button
+                    <Button
                         onClick={clickAddProduct}
-                    >Добавить товар </button>
+                        value="Добавить товар"
+                    ></Button>
 
 
                 </form>

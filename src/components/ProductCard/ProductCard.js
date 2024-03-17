@@ -7,7 +7,7 @@ import { removeProduct } from "../../store/slices/product/fetchProductSlice";
 import { postCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
 import classes from "./ProductCard.module.css"
-import Button from "../UI/Input/Button/Button";
+import Button from "../UI/Button/Button";
 import { updateProd } from "../../store/slices/addProd/addProdSlice";
 
 function ProductCard(props){

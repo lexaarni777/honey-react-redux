@@ -1,6 +1,6 @@
 import React from "react"
 import classes from "./ProductCart.module.css"
-import Button from "../UI/Input/Button/Button"
+import Button from "../UI/Button/Button"
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProdInCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";

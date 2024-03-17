@@ -3,11 +3,16 @@ import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import Input from '../../UI/Input/Input';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {setUser} from '../../../store/slices/user/userSlice'
 import { getCart } from '../../../store/slices/cart/cartSlice';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import LogoImg from '../../../media/logo.png'
+import { NavLink } from 'react-router-dom';
+import Button from '../../UI/Button/Button';
+import Backdrop from '../../UI/Backdrop/Backdrop';
+import { isCloseAuth } from '../../../store/slices/uiSlice/uiSlice';
 // import { getCart } from '../../../store/slices/cart/cartSlice';
 
 // const validateEmail = (email) => {
@@ -18,107 +23,16 @@ import { useNavigate } from 'react-router-dom';
 //       );
 //   };
 
-const Logout = () => {
-//     state = {
-//         formControls:{
-//             email: {
-//                 value: '',
-//                 label: 'Email',
-//                 type: 'email',
-//                 errorMessage: "Введите корректный Email",
-//                 valid: 'false',
-//                 touched: 'false',
-//                 validation:{
-//                     required: true,
-//                     email: true
-//                 }
+const Logout = (props) => {
 
-//             },
-//             password:{
-//                 value: '',
-//                 label: 'Пароль',
-//                 type: 'password',
-//                 errorMessage: "Введите корректный пароль",
-//                 valid: 'false',
-//                 touched: 'false',
-//                 validation:{
-//                     required: true,
-//                     minLenght: 6
-//                 }
-//             }
+   const {isAuth} = useSelector(state => state.ui)
+   console.log(isAuth)
 
-//         }
-//     }
-    
-    
-    
-//     submitForm = event => {
-//         event.preventDefault()
-//     }
-
-    
-
-//     validateControl(value, validation) {
-//         if (!validation){
-//             return true
-//         }
-//         let isValid = true
-
-//         if (validation.required){
-//             isValid = value.trim() !== '' && isValid
-//         }
-//         if (validation.email){
-//             isValid = validateEmail(value) && isValid
-//         }
-        
-
-//         if (validation.minLenght){
-//             console.log(validation.minLenght)
-//             isValid = value.length >= validation.minLenght && isValid
-//             console.log(isValid)
-//         }
+    console.log(props)
 
 
 
-//         return isValid
 
-//     }
-
-//     onChangeHandler = (event, controlName) => {
-//         console.log(`${event.target.value}, ${controlName}`)
-        
-//     const formControls = {...this.state.formControls}
-//     const control = {...formControls[controlName]}
-    
-//     control.value = event.target.value
-//     control.touched = true
-//     control.valid = this.validateControl(control.value, control.validation)
-//     formControls[controlName] = control
-    
-//     this.setState({
-//         formControls
-//     })
-//     }
-
-//    renderInputs(){
-//     const inputs = Object.keys(this.state.formControls).map((controlName, index)=>{
-//         const control = this.state.formControls[controlName]
-//         return(
-//             <Input
-//                 key = {controlName + index}
-//                 label = {control.label}
-//                 type = {control.type}
-//                 value = {control.value}
-//                 valid = {control.valid}
-//                 touched = {control.touched}
-//                 errorMessage = {control.errorMessage}
-//                 shouldValidate = {!!control.validation}
-//                 onChange = {event => this.onChangeHandler(event, controlName) }
-//             />
-//         )
-//     })
-//     return inputs
-//    }
 
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -175,27 +89,54 @@ const Logout = () => {
                 .catch(console.error)
         }
         
-    
- 
+        (console.log(props))
+
+        const cls = [classes.Logout]
+        console.log(classes)
+        console.log(cls)
+        if(isAuth){
+            cls.push(classes.OpenAuth)
+        }else{
+            cls.push(classes.CloseAuth)
+        }
+        
         return(
-            <div className={classes.Logout}>
+            <React.Fragment>
+            <div className={cls.join(' ')}>
+        {console.log(classes)}
+                    <NavLink to='/'>
+                        <img src={LogoImg} width='50px' height='50px' alt='imageLogo'/>
+                    </NavLink>
                 <form onSubmit={submitForm}>
-                    <input 
+                    <Input 
                         type='email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder = 'email'
                     />
-                    <input 
+                    <Input 
                         type='password'
                         value={pass}
                         onChange={(e) => setPass(e.target.value)}
                         placeholder = 'password'
                     />
-                    <button onClick={() => clickLogout(email, pass)}>Войти</button>
-                    <button onClick={() => clickRegister(email, pass)}>Регистрация</button>
+                    <Button onClick={() => clickLogout(email, pass)} value="Войти">  </Button>
+                    <Button onClick={() => clickRegister(email, pass)} value="Регистрация"></Button>
                 </form>
             </div>
+            {isAuth
+                ?<Backdrop
+                    onClick={()=> dispatch(isCloseAuth())}
+                />
+                :null
+                   
+            }
+
+            </React.Fragment>
+            
+            
+            
+
         )
     }
  export default Logout

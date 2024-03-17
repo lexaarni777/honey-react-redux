@@ -33,12 +33,15 @@ function App() {
       dispatch(getProducts())
     }
   }
-  
+  const {isAuth} = useAuth();
+
 
   let routes
-    if(localStorage.token){
+    if(isAuth){
       routes = (
+        
         <Routes>
+          {console.log('такс зареган')}
           <Route path="/" element={<Main/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/counter' element={<Counter/>}/>
@@ -46,7 +49,7 @@ function App() {
           <Route path='/updateprod/:id' element={<UpdateProd/>}/>
           
           <Route path='/auth' element={<Auth/>}/>
-          <Route path='/logout' element={<Logout/>}/>
+          <Route path='/' element={<Logout/>}/>
           <Route path='/admin/addproduct' element={<AddProduct/>}/>
           <Route path='/admin' element={<Admin/>}/>
           
@@ -56,12 +59,13 @@ function App() {
     }else{
       routes = (
         <Routes>
+          {console.log('такс не зареган')}
           <Route path="/" element={<Main/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/counter' element={<Counter/>}/>
           <Route path='/counter/:id' element={<DetProdCard/>}/>
           <Route path='/auth' element={<Auth/>}/>
-          <Route path='/logout' element={<Logout/>}/>
+          <Route path='/' element={<Logout/>}/>
         </Routes>
       )
     }

@@ -4,10 +4,13 @@ import Navigation from './Navigation/Navigation';
 import classes from './Header.module.css'
 import ExitUser from './ExitUser/ExitUser';
 import { useAuth } from '../../hooks/userAuth';
-import React from 'react';
+import React, {useState} from 'react';
 
 function Header() {
+
     const {isAuth} = useAuth();
+
+
 
     let navigation = null
 

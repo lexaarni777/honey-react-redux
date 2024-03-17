@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Input from '../../../components/UI/Input/Input'
 import { render } from 'react-dom';
 import { imputUpdateProd, updateProdFinish , updateProdFinishAsync} from "../../../store/slices/addProd/addProdSlice";
-import Button from "../../../components/UI/Input/Button/Button";
+import Button from "../../../components/UI/Button/Button";
 
 function UpdateProd(props) {
     const { isAdmin, isAuth } = useAuth();

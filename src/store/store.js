@@ -3,6 +3,7 @@ import fetchProductsSlice from "./slices/product/fetchProductSlice";
 import userSlice from "./slices/user/userSlice";
 import cartSlice from "./slices/cart/cartSlice";
 import addProdSlice from "./slices/addProd/addProdSlice";
+import uiSlice from "./slices/uiSlice/uiSlice";
 
 //создаем стор всего приложения
 const  store = configureStore({
@@ -10,7 +11,8 @@ const  store = configureStore({
         products: fetchProductsSlice, //сдесь грузятся все товары
         user: userSlice,
         cart: cartSlice,
-        addProd: addProdSlice
+        addProd: addProdSlice,
+        ui: uiSlice,
     }
 })
 
