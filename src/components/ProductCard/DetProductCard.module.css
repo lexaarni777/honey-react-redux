@@ -1,0 +1,18 @@
+.DetProdCard{
+    margin: 0 auto;
+    width: 960px;
+    display: flex;
+}
+.Galery{
+    display: flex;
+}
+.Galery, .RightBlock{
+    width: 440px;
+}
+.DetProdCard img{
+    width: 360px;
+    height: 360px;
+}
+.GaleryMini{
+    width: 80px;
+}

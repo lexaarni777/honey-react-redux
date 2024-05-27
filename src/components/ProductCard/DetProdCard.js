@@ -1,17 +1,12 @@
 import React, { useState } from "react"
 import { useLocation } from "react-router-dom";
-import { getDatabase, ref, push, get, child, update, set, onValue  } from 'firebase/database';
-import { getAuth } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { postCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
-import { useDetProd } from "../../hooks/prodDetCard";
+import { useDetProd} from "../../hooks/prodDetCard";
 import { useSelector } from "react-redux";
-import Input from './../UI/Input/Input';
-import axios from "../../axios/axios";
+import classes from "./DetProductCard.module.css";
 
-import { render } from 'react-dom';
-import { imputUpdateProd, updateProdFinish , updateProdFinishAsync} from "../../store/slices/addProd/addProdSlice";
 
 function DetProdCard() {
     const { isAdmin, isAuth } = useAuth();
@@ -19,12 +14,11 @@ function DetProdCard() {
     const {cart} = useSelector(state => state.cart);
 
     console.log(location)
-    const {updateProd} = useSelector(state=>state.addProd) 
     
     const idProd = location.state.id; // Получаем id продукта
     console.log(idProd)
     const { id } = useAuth(); // Получаем id и корзину авторизованного пользователя
-    const { product } = useDetProd(idProd); // Получаем продукт из стейта
+    const product = useDetProd(idProd); // Получаем продукт из стейта
     const dispatch = useDispatch();
     {console.log('1', isAuth, isAdmin)}
     console.log('jhvjvj', idProd);
@@ -42,24 +36,21 @@ function DetProdCard() {
         ) : null
     );
 
-    const renderProduct = () =>{
-        console.log(isAdmin, isAuth);
-        return(
-       <div>
-        {console.log('4', isAuth, isAdmin)}
-        <p>{product.name}</p>
-        <p>{product.prise}</p>
-        <p>{product.description}</p>
-        <img src={product.img} alt={product.name}></img>
-        {renderAddToCartButton()}
-        </div>
-    )};
-
-
+ 
 
     return (
-        <div>
-            {renderProduct()}
+        <div className={classes.DetProdCard}>
+            <div className={classes.Galery}>
+                <div className={classes.GaleryMini}></div>
+                <img src={product.img} alt={product.name}></img>
+            </div>
+            <div className={classes.RightBlock}>
+                <p>{product.name}</p>
+                <p>{product.description}</p>
+                <p>{product.prise}</p>            
+                {renderAddToCartButton()}
+            </div>
+            
         </div>
     );
 }

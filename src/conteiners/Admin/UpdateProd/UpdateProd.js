@@ -4,7 +4,7 @@ import { getDatabase, ref, push, get, child, update, set, onValue  } from 'fireb
 import { getAuth } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../../hooks/userAuth";
-import { useDetProd } from "../../../hooks/prodDetCard";
+import { useUpdetProd } from "../../../hooks/prodDetCard";
 import { useSelector } from "react-redux";
 import Input from '../../../components/UI/Input/Input'
 import { render } from 'react-dom';
@@ -22,7 +22,7 @@ function UpdateProd(props) {
     const idProd = location.state.id; // Получаем id продукта
     console.log(idProd)
     const { id } = useAuth(); // Получаем id и корзину авторизованного пользователя
-    const { product } = useDetProd(idProd); // Получаем продукт из стейта
+    const { product } = useUpdetProd(idProd); // Получаем продукт из стейта
     const dispatch = useDispatch();
     {console.log('1', isAuth, isAdmin)}
     console.log('jhvjvj', idProd);

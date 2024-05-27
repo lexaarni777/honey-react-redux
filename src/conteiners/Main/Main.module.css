@@ -10,6 +10,25 @@
 .Prev{
     margin: 0 auto;
     width: 960px;
+    height: 300px;
     display: flex;
     align-items: center;
+}
+.PrevLeft{
+    width: 440px;
+    margin: 0 20px;
+}
+.PrevLeft p{
+    font-size: 30px;
+    font-weight: 600;
+}
+.PrevRight{
+    width: 440px;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+.PrevRightBotton{
+    display: flex;
+    justify-content: flex-start;
 }
