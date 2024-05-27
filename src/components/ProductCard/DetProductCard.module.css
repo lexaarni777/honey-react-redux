@@ -8,11 +8,49 @@
 }
 .Galery, .RightBlock{
     width: 440px;
+    margin: 0 20px;
 }
 .DetProdCard img{
     width: 360px;
     height: 360px;
+    margin: auto;
 }
 .GaleryMini{
     width: 80px;
+}
+.RightBlockName{
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+.RightBlock{
+    display: flex;
+    flex-direction: column;
+}
+.PriseBlock{
+    margin-top: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #3b312f;
+}
+.RightBlockDescr{
+    text-align: justify;
+}
+.PriseBlockText{
+    margin: 0 auto;
+}
+
+.PriseName{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+.Prise{
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0 auto;
+}
+.PriseBlock button{
+    margin: auto;
 }

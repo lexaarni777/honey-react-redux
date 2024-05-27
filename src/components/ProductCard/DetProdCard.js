@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/userAuth";
 import { useDetProd} from "../../hooks/prodDetCard";
 import { useSelector } from "react-redux";
 import classes from "./DetProductCard.module.css";
+import Button from "../UI/Button/Button";
 
 
 function DetProdCard() {
@@ -30,9 +31,9 @@ function DetProdCard() {
         console.log('2', isAuth, isAdmin),
 
         isAuth ? (
-            <button onClick={() => dispatch(postCart({ idProd, id, cart }), console.log(cart))}>
-                Добавить в корзину
-            </button>
+            <Button onClick={() => dispatch(postCart({ idProd, id, cart }), console.log(cart))}
+                value='Добавить в корзину'>
+            </Button>
         ) : null
     );
 
@@ -45,10 +46,17 @@ function DetProdCard() {
                 <img src={product.img} alt={product.name}></img>
             </div>
             <div className={classes.RightBlock}>
-                <p>{product.name}</p>
-                <p>{product.description}</p>
-                <p>{product.prise}</p>            
-                {renderAddToCartButton()}
+                <div>
+                    <p className={classes.RightBlockName}>{product.name}</p>
+                    <p className={classes.RightBlockDescr}>{product.description}</p>
+                </div>
+                <div className={classes.PriseBlock}>
+                    <div className={classes.PriseBlockText}>
+                        <p className={classes.PriseName}>Цена за 1 кг: </p>
+                        <p className={classes.Prise}>{product.prise} руб.</p>            
+                    </div>
+                    {renderAddToCartButton()}
+                </div>
             </div>
             
         </div>
