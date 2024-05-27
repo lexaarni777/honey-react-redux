@@ -6,22 +6,15 @@ function Navigation(){
     const {isAdmin} = useAuth();
     let linkNav = null;
     console.log('isAdmin' + isAdmin)
-    if(isAdmin){
+   
         linkNav = (
             <ul>
-                <li><NavLink to='/counter'>Прилавок</NavLink></li>
                 <li><NavLink to='/about'>О Нас</NavLink></li>
-                <li><NavLink to='/admin'>админка</NavLink></li>
+                <li><NavLink to='/counter'>Прилавок</NavLink></li>
+                {isAdmin?<li className={classes.Admin}><NavLink to='/admin'>Админка</NavLink></li>:null}
             </ul> 
         )
-    }else{
-        linkNav = (
-            <ul>
-                <li><NavLink to='/counter'>Прилавок</NavLink></li>
-                <li><NavLink to='/about'>О Нас</NavLink></li>
-            </ul> 
-        )
-    }
+ 
 
     return(
         <nav className={classes.Navigation}>

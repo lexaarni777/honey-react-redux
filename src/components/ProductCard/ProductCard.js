@@ -9,6 +9,7 @@ import { useAuth } from "../../hooks/userAuth";
 import classes from "./ProductCard.module.css"
 import Button from "../UI/Button/Button";
 import { updateProd } from "../../store/slices/addProd/addProdSlice";
+import Loader from "../UI/Loader/Loader";
 
 function ProductCard(props){
     
@@ -18,6 +19,7 @@ function ProductCard(props){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {id,isAuth,isAdmin} = useAuth()
+    const isLoader = useSelector(state => state.ui)
     const cart = useSelector(state => state.cart)
     // const clickDelitProd = (id) => dispatch(removeProduct(id))
 
@@ -35,8 +37,9 @@ function ProductCard(props){
             <NavLink 
                 to={{pathname:'/counter/'+ props.id}}
                 state = {{id: props.id}}>
-                    <img src={product[idProd].img} alt="альтернативный текст"></img>
+                <img src={product[idProd].img} alt="альтернативный текст"></img>   
             </NavLink>
+            
             <p>Цена за 1 кг: {props.prise} руб</p>          
             <Button 
                 onClick={() => dispatch(postCart({idProd, id, cart}))}

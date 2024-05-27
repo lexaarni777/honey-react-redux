@@ -108,18 +108,20 @@ const Logout = (props) => {
                         <img src={LogoImg} width='50px' height='50px' alt='imageLogo'/>
                     </NavLink>
                 <form onSubmit={submitForm}>
-                    <Input 
-                        type='email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder = 'email'
-                    />
-                    <Input 
-                        type='password'
-                        value={pass}
-                        onChange={(e) => setPass(e.target.value)}
-                        placeholder = 'password'
-                    />
+                    <div className={classes.IndexLast}>
+                        <Input 
+                            type='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder = 'email'
+                        />
+                        <Input
+                            type='password'
+                            value={pass}
+                            onChange={(e) => setPass(e.target.value)}
+                            placeholder = 'password'
+                        />
+                    </div>
                     <Button onClick={() => clickLogout(email, pass)} value="Войти">  </Button>
                     <Button onClick={() => clickRegister(email, pass)} value="Регистрация"></Button>
                 </form>

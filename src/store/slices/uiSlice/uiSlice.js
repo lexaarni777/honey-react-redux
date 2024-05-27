@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 
 const initialState = {//задем начальный стейт для пользователя задавая параметры которые нам будут необходимы
     isAuth: false, //видиость окна авторизации
+    isLoader: false,
 }
 
 const uiSlice = createSlice({
@@ -17,10 +18,16 @@ const uiSlice = createSlice({
         isCloseAuth(state){//удаляем пользователя из сесии обнуляя его стейт
             state.isAuth = false;
         },
+        isLoaderTrue(state){
+            state.isLoader = true;
+        },
+        isLoaderFalse(state){
+            state.isLoader = false;
+        },
     },
 });
 
 
-export const {isOpenAuth, isCloseAuth} = uiSlice.actions
+export const {isOpenAuth, isCloseAuth, isLoaderFalse, isLoaderTrue} = uiSlice.actions
 
 export default uiSlice.reducer

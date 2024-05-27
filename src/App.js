@@ -17,6 +17,7 @@ import DetProdCard from "./components/ProductCard/DetProdCard";
 import UpdateProd from "./conteiners/Admin/UpdateProd/UpdateProd";
 import { getCart } from "./store/slices/cart/cartSlice";
 import { getProducts } from "./store/slices/product/fetchProductSlice";
+import User from "./conteiners/User/User";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function App() {
           <Route path='/counter' element={<Counter/>}/>
           <Route path='/counter/:id' element={<DetProdCard/>}/>
           <Route path='/updateprod/:id' element={<UpdateProd/>}/>
-          
+          <Route path='/user' element={<User/>}/>
           <Route path='/auth' element={<Auth/>}/>
           <Route path='/' element={<Logout/>}/>
           <Route path='/admin/addproduct' element={<AddProduct/>}/>

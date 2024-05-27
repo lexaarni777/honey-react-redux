@@ -14,33 +14,22 @@ function Header() {
 
     let navigation = null
 
-    if(isAuth){
+
         navigation = (
             
                 <div className={classes.Container}>
                     <div className={classes.headerUpper}>
                         <Logo/>
-                        <ExitUser/>
-                    </div>
-                    <Navigation/>
-                </div>
-            
-            )
-        
-    }else{
-        navigation = (
-            
-                 <div className={classes.Container}>
-                    <div className={classes.headerUpper}>
-                    <Logo/>
-                    <Auth/>
+                        <Navigation/>
+                        {isAuth?<ExitUser/>:<Auth/>}
+                        
                     </div>
                     
-                    <Navigation/>
                 </div>
             
             )
-    }
+   
+  
     return (
 
         <header className={classes.Header}>         

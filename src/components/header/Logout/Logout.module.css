@@ -1,8 +1,8 @@
 .Logout{
     width: 420px;
     height: 400px;
-    border: 3px solid  #3b312f;
-    background-color: #fcb100;
+    border: 1px solid  #fcb100;
+    background-color: #3b312f;
     position: fixed;
     left: 50%;
     margin-left: -210px;
@@ -14,6 +14,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .Logout p{
     text-align: center;
     color:#3b312f;
@@ -54,4 +55,7 @@
 }
 .CloseAuth{
     visibility: hidden;
+}
+.Logout .IndexLast{
+    margin: 15px auto;
 }
