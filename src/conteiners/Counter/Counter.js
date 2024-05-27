@@ -51,7 +51,7 @@ function Counter(){
 }
     return(
         <div className={classes.Container}>
-            <h1>Прилавок</h1>
+            <div className={classes.CounterHeader}>Прилавок</div>
             <div className={classes.Counter}>
             {
             renderProducts()
