@@ -17,10 +17,6 @@
     flex-direction: row;
     border-bottom: 1px solid #fcb100;
 }
-.AboutBottom{
-    display: flex;
-    flex-direction: row;
-}
 .AboutTopLeft{
     width: 440px;
     margin: auto;
@@ -49,3 +45,52 @@
 .AboutTopRight p{
     text-align: justify;
 }
+
+
+.AboutBottom{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.AboutBottomLeft, .AboutBottomRight{
+    width: 440px;
+    margin: auto;
+}
+
+.AboutBottomRight {
+    text-align: center;
+}
+
+.AboutBottomLeft p{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+.AboutBottomIndicators{
+   display: flex;
+   flex-direction: column;
+   width: 440px;
+   margin: auto;
+   font-size: 14px;
+   font-weight: 100;
+}
+.AboutBottomIndicators p{
+    font-size: 14px;
+    font-weight: 100;
+    margin: auto;
+ }
+.IndicatorsTop, .IndicatorsBottom{
+    display: flex;
+    flex-direction: row;
+}
+.IndicatorsTop div, .IndicatorsBottom div{
+    width: 200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+.IndicatorsTop img, .IndicatorsBottom img{
+    margin: 20px 20px 0px 0px;
+}
+

@@ -1,3 +1,17 @@
 .ProductCart:hover{
     background-color: rgb(246, 246, 246);
 }
+.ProductCart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 800px;
+    margin: 15px auto;
+}
+.ProductCart .Name{
+    font-size: 20px;
+    font-weight: 400;
+}
+.Img img{
+    width: 150px;
+}

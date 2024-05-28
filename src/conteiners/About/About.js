@@ -1,6 +1,10 @@
 import Logo from '../../components/header/Logo/Logo'
 import classes from './About.module.css'
 import about from '../../media/about.jpg'
+import indi1 from '../../media/indi1.png'
+import indi2 from '../../media/indi2.png'
+import indi3 from '../../media/indi3.png'
+import indi4 from '../../media/indi4.png'
 
 function About(){
     
@@ -21,21 +25,18 @@ function About(){
                 </div>
             </div>
             <div className={classes.AboutBottom}>
-                <div>
-                    <p>Наши ключевые показатели:</p>
-                    <div>
-                        <div></div>
-                        <div>
-                            <div>
-                                <div>10 сортов</div><div>более 20 лет на рынке</div>
-                            </div>
-                            <div>
-                                <div>15 улев</div><div>15 регионов</div>
-                            </div>
+                <div className={classes.AboutBottomLeft}>
+                    <p>Наши преимущества</p>
+                    <div className={classes.AboutBottomIndicators}>
+                        <div className={classes.IndicatorsTop}>
+                            <div><img src={indi1}/><p>Экологичность</p></div><div><img src={indi2}/><p>Много Сортов</p></div>
+                        </div>
+                        <div className={classes.IndicatorsBottom}> 
+                            <div><img src={indi3}/><p>Ручной Сбор</p></div><div><img src={indi4}/><p>Более 30 лет на рынке</p></div>
                         </div>
                     </div>
                 </div>
-                <div><img src={about}/></div>
+                <div className={classes.AboutBottomRight}><img src={about}/></div>
             </div>
         </div>        
     )

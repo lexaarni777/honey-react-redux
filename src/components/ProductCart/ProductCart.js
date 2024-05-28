@@ -15,6 +15,8 @@ function ProductCard(props){
     const cart = useSelector(state => state.cart)
     const idProd = props.id
 
+
+
     const onChangeInput = event => {
         console.log(event.target)
         
@@ -25,23 +27,46 @@ function ProductCard(props){
         console.log(val)
     }
 
+        const incrementQuantity = () => {
+        const newValue = parseInt(props.quantity, 10) + 1;
+        dispatch(imputUpdateProdCart({ val: newValue, idProd, id, cart }));
+    };
+
+    const decrementQuantity = () => {
+        const newValue = props.quantity > 0 ? parseInt(props.quantity, 10) - 1 : 0;
+        dispatch(imputUpdateProdCart({ val: newValue, idProd, id, cart }));
+    };
+
      return(
         <div className={classes.ProductCart}>
-            <h1>Название товара: {props.name}</h1>
-            <p>Цена за еденицу: {props.prise}</p>
-            <Input
-                label='Количество товаров в заказе:'
-                type="number"
-                name="quantity"
-                onChange={onChangeInput}
-                value={props.quantity}              
-                >
-            </Input>    
-            <p>Всего: {props.quantity*props.prise}</p>
-            <Button
+            <div className={classes.Img}><img src={props.img}/></div>
+            <div className={classes.Name}>
+                {props.name}
+            </div>
+            <div className={classes.Prise}>
+                <p>Цена за еденицу: {props.prise}</p>
+                <p>Всего: {props.quantity*props.prise}</p>
+            </div>
+            <div className={classes.Cal}>
+                <div>
+                    <button type="button" onClick={decrementQuantity}>-</button>
+                    <Input
+                        label='Количество товаров в заказе:'
+                        type="number"
+                        name="quantity"
+                        onChange={onChangeInput}
+                        value={props.quantity}              
+                        >
+                    </Input>
+                    <button type="button" onClick={incrementQuantity}>+</button>
+                </div>
+                
+
+                <Button
                 value="Удалить из корзины"
                 onClick={() => dispatch(deleteProdInCart({ idProd, id, cart}))}
-            ></Button>     
+                ></Button>   
+            </div>
          </div>
     )
 }
