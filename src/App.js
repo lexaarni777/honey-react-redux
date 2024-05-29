@@ -17,7 +17,9 @@ import DetProdCard from "./components/ProductCard/DetProdCard";
 import UpdateProd from "./conteiners/Admin/UpdateProd/UpdateProd";
 import { getCart } from "./store/slices/cart/cartSlice";
 import { getProducts } from "./store/slices/product/fetchProductSlice";
+import { getOrders } from "./store/slices/orders/ordersSlice";
 import User from "./conteiners/User/User";
+import Orders from "./conteiners/Orders/Orders";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +33,7 @@ function App() {
         token: localStorage.token,
       }))
       dispatch(getCart(localStorage.userId))
+      dispatch(getOrders(localStorage.userId))
       dispatch(getProducts())
     }
   }
@@ -53,6 +56,7 @@ function App() {
           <Route path='/' element={<Logout/>}/>
           <Route path='/admin/addproduct' element={<AddProduct/>}/>
           <Route path='/admin' element={<Admin/>}/>
+          <Route path='/orders' element={<Orders/>}/>
           
           <Route path='/cart' element={<Cart/>}/>
         </Routes>

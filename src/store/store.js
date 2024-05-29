@@ -4,6 +4,7 @@ import userSlice from "./slices/user/userSlice";
 import cartSlice from "./slices/cart/cartSlice";
 import addProdSlice from "./slices/addProd/addProdSlice";
 import uiSlice from "./slices/uiSlice/uiSlice";
+import ordersSlice from "./slices/orders/ordersSlice";
 
 //создаем стор всего приложения
 const  store = configureStore({
@@ -13,6 +14,7 @@ const  store = configureStore({
         cart: cartSlice,
         addProd: addProdSlice,
         ui: uiSlice,
+        orders: ordersSlice,
     }
 })
 

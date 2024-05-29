@@ -44,26 +44,25 @@ function ProductCard(props){
                 {props.name}
             </div>
             <div className={classes.Prise}>
-                <p>Цена за еденицу: {props.prise}</p>
+                <p>Цена за 1 кг: {props.prise}</p>
                 <p>Всего: {props.quantity*props.prise}</p>
             </div>
             <div className={classes.Cal}>
-                <div>
-                    <button type="button" onClick={decrementQuantity}>-</button>
-                    <Input
-                        label='Количество товаров в заказе:'
+                <div className={classes.CalTop}>
+                    <button className={classes.CalDecr} type="button" onClick={decrementQuantity}>-</button>
+                    <input
                         type="number"
                         name="quantity"
                         onChange={onChangeInput}
                         value={props.quantity}              
                         >
-                    </Input>
-                    <button type="button" onClick={incrementQuantity}>+</button>
+                    </input>
+                    <button className={classes.CalIncre} type="button" onClick={incrementQuantity}>+</button>
                 </div>
                 
 
                 <Button
-                value="Удалить из корзины"
+                value="Удалить"
                 onClick={() => dispatch(deleteProdInCart({ idProd, id, cart}))}
                 ></Button>   
             </div>

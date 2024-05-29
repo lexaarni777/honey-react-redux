@@ -2,10 +2,12 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import { getDatabase, ref, set } from "firebase/database";
 import { useAuth } from '../../../hooks/userAuth';
 import axios from "../../../axios/axios";
+import { deleteObject } from 'firebase/storage';
 
 const initialState = {
    productsCart: {},
 }
+
 
 
 export const postCart = createAsyncThunk(
@@ -67,6 +69,23 @@ export const postCart = createAsyncThunk(
         }
 
     }
+ )
+
+
+
+ export const deleteCartInOrders = createAsyncThunk(
+    'cart/deleteCartInOrders', async(id, {rejectWithValue, dispatch})=>{
+        try{
+            const db = getDatabase();
+            await set(ref(db, 'cart/' + id),{
+                ...{}
+            });
+            dispatch(nullCart())
+        }catch(e){
+            console.log(e)
+        }
+    }
+
  )
 
  export const imputUpdateProdCart = createAsyncThunk(
@@ -131,6 +150,10 @@ export const cartSlice = createSlice({
         imputUpdateProdCartR(state, action){
             state.productsCart = action.payload
         },
+        nullCart(state){
+            console.log('nullCart')
+            state.productsCart = null
+        },
     },
     extraReducers:{
         [getCart.fulfilled]: () => console.log('fulfiled'),
@@ -139,6 +162,6 @@ export const cartSlice = createSlice({
     }
 })
 
-export const {setCart, addProdCart, deleteProdInCartR, imputUpdateProdCartR} = cartSlice.actions
+export const {setCart, addProdCart, deleteProdInCartR, imputUpdateProdCartR, nullCart} = cartSlice.actions
 
 export default cartSlice.reducer

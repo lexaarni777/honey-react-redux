@@ -5,22 +5,34 @@ import { getProducts } from "../../store/slices/product/fetchProductSlice";
 import classes from "./Cart.module.css";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/UI/Button/Button";
+import axios from "../../axios/axios";
+import { postOrders } from "../../store/slices/orders/ordersSlice";
+import { useAuth } from "../../hooks/userAuth";
+
 
 function Cart(){
     // Используем хук useNavigate для получения функции навигации
     let navigate = useNavigate()
-
+    const cart = useSelector(state => state.cart.productsCart)
+    const products = useSelector(state => state.products.products)
+    const orders = useSelector(state=> state.orders.orders)
+    const { id } = useAuth()
+    console.log(cart)
+    console.log(products)
     // Обработчик клика на кнопку, который перенаправит пользователя на указанный URL
     const handleButtonClick = () => {
         navigate('/counter')
     }
 
+    const dispatch = useDispatch()
 
-    const cart = useSelector(state => state.cart.productsCart)
-    const products = useSelector(state => state.products.products)
+    const handleCheckout = () => {
+        dispatch(postOrders({cart, id, orders}))
+    }    
 
-    console.log(cart)
-    console.log(products)
+
+
+
 
     const renderCartList=()=>{
         
@@ -40,20 +52,24 @@ function Cart(){
                 })
                 console.log('arr', cartList)
             })
-            return cartList.map((product, index) => {
-                console.log('productsList', product, index)
-                return(
+            return (
+                <>
+                  {cartList.map((product, index) => (
                     <ProductCart
-                    key={index}
-                    name={product.name}
-                    prise={product.prise}
-                    id={product.id}
-                    description={product.description}
-                    quantity={product.quantity}
-                    img={product.img}
+                      key={index}
+                      name={product.name}
+                      prise={product.prise}
+                      id={product.id}
+                      description={product.description}
+                      quantity={product.quantity}
+                      img={product.img}
                     />
-                )
-            })
+                  ))}
+                  <div className={classes.checkoutButtonContainer}>
+                    <Button onClick={handleCheckout} value="Оформить заказ" />
+                  </div>
+                </>
+              );
         }else{
             return(
                 <div>
