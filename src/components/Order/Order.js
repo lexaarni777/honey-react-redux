@@ -1,15 +1,42 @@
-
+// Импортируем CSS-модуль для стилей, чтобы стилизовать наш компонент
 import classes from "./Order.module.css";
 
-
-function Order(props) {
-   
+// Компонент Order отображает детали конкретного заказа
+function Order({ orderData, orderIndex, productList }) {
+    // JSX для рендера компонента
     return (
-        <div className={classes.Order}>
-            
-            
-        </div>
+    // Обертка для всего компонента, добавляем класс из импортированных стилей
+    <div className={classes.Order}>
+        {/* Отображение индекса (номера) заказа */}
+        <p>Номер заказа: {orderIndex}</p>
+        {/* Отображение даты заказа */}
+        <p>Дата заказа: {orderData.date}</p>
+        {/* Таблица для отображения списка товаров в заказе */}
+        <table>
+            {/* Шапка таблицы с заголовками колонок */}
+            <thead>
+                <tr>
+                    <th>Название товара</th>
+                    <th>Количество товара</th>
+                </tr>
+            </thead>
+            {/* Тело таблицы заполняется динамически основываясь на данных о заказе */}
+            <tbody>
+                {/* Итерация по объекту order внутри orderData для получения productId и индекса */}
+                {Object.keys(orderData.order).map((productId, idx) => (
+                    // Строка таблицы для каждого товара, ключ помогает React идентифицировать элементы списка
+                    <tr key={idx}>
+                        {/* Ячейка с названием товара, получаем название из productList используя productId */}
+                        <td>{productList[productId].name}</td>
+                        {/* Ячейка с количеством товара, получаем количество используя productId */}
+                        <td>{orderData.order[productId]}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
     );
 }
 
+// Экспорт компонента Order для использования в других частях приложения
 export default Order;

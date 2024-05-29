@@ -13,35 +13,28 @@ function Orders(){
     }
 
 
-    const renderOrdersList=()=>{
-        console.log(orders)
+    const renderOrdersList = () => {
+        console.log(orders);
         
-
-
-        if(orders){
-            const arrOrders = []
-            Object.entries(orders).forEach((order, key)=>{
-                console.log('order', order, 'key',key)
-                arrOrders.push({
-                    name: productsList
-                })
-            })
+        if (!orders) {
             return (
-                <div>
-                    
-                </div>
-            );
-        }else{
-            return(
                 <div>
                     <p>У Вас пока нет заказов</p>
                     <Button onClick={() => handleButtonClick('/cart')} value='Корзина'/>
-                    <Button onClick={() => handleButtonClick('/counter')} value='Магзин'/>
+                    <Button onClick={() => handleButtonClick('/counter')} value='Магазин'/>
                 </div>
-                
-            )
+            );
         }
-    }
+    
+        // Отображаем каждый заказ с помощью компонента Order
+        return (
+          <div>
+            {orders.map((order, index) => (
+              <Order key={index} orderData={order} orderIndex={index} productList={productsList} />
+            ))}
+          </div>
+        );
+    };
 
 
     return(
