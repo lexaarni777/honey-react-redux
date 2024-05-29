@@ -25,14 +25,48 @@ export const postOrders= createAsyncThunk(
         const cart = {...arr.cart}
         const ordersArr = arr.orders || []
         const id = arr.id
+        const products = {...arr.products}
+        console.log(products)
+
         let ordersAdd = []
         if(ordersArr.length!=0){
             ordersAdd.push(...ordersArr)
         }
         let date = formatDate(new Date())
-        let order = {}
-        order.date = date
-        order.order = cart        
+        
+        // Создаем объект order с датой
+        let order = {
+            date: date,
+            order: {}
+        };
+        
+        console.log(order);
+        
+        // Проходим циклом по каждому ключу в объекте cart (корзина)
+        for (let key in cart) {
+            console.log(key); // Выводим ключ товара
+            console.log(order); // Выводим текущее состояние объекта order
+            console.log(cart[key]); // Выводим количество товара в корзине
+        
+            // Убедитесь, что объект order.order уже имеет ключ товара как свойство.
+            // Если нет, то создаем объект для этого свойства
+            if (!order.order[key]) {
+            order.order[key] = {};
+            }
+            
+            // Теперь можно безопасно добавить свойство quantityProd, так как мы уверены,
+            // что объект для этого ключа товара существует
+            order.order[key].quantityProd = cart[key];
+            console.log(order);
+            
+            // Аналогичная проверка: добавляем свойство price к товару
+            if (products[key] && products[key].prise) {
+            order.order[key].price = products[key].prise;
+            }
+            console.log(order);
+        }
+  
+        console.log(order)
         ordersAdd.push(order)
         console.log('то что было', ordersArr)
         console.log('то что добавляем', ordersAdd)

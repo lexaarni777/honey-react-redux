@@ -1,42 +1,48 @@
-// Импортируем CSS-модуль для стилей, чтобы стилизовать наш компонент
 import classes from "./Order.module.css";
 
-// Компонент Order отображает детали конкретного заказа
 function Order({ orderData, orderIndex, productList }) {
-    // JSX для рендера компонента
+    // Подсчет общей суммы заказа перед рендерингом
+    let sum = Object.keys(orderData.order).reduce((acc, productId) => {
+        // Убеждаемся, что для productId есть цена и количество
+        const price = orderData.order[productId].price || 0;
+        const quantity = orderData.order[productId].quantityProd || 0;
+
+        // К общей сумме добавляем произведение цены на количество
+        return acc + (price * quantity);
+    }, 0);
+
     return (
-    // Обертка для всего компонента, добавляем класс из импортированных стилей
-    <div className={classes.Order}>
-        {/* Отображение индекса (номера) заказа */}
-        <p>Номер заказа: {orderIndex}</p>
-        {/* Отображение даты заказа */}
-        <p>Дата заказа: {orderData.date}</p>
-        {/* Таблица для отображения списка товаров в заказе */}
-        <table>
-            {/* Шапка таблицы с заголовками колонок */}
-            <thead>
-                <tr>
-                    <th>Название товара</th>
-                    <th>Количество товара</th>
-                </tr>
-            </thead>
-            {/* Тело таблицы заполняется динамически основываясь на данных о заказе */}
-            <tbody>
-                {/* Итерация по объекту order внутри orderData для получения productId и индекса */}
-                {Object.keys(orderData.order).map((productId, idx) => (
-                    // Строка таблицы для каждого товара, ключ помогает React идентифицировать элементы списка
-                    <tr key={idx}>
-                        {/* Ячейка с названием товара, получаем название из productList используя productId */}
-                        <td>{productList[productId].name}</td>
-                        {/* Ячейка с количеством товара, получаем количество используя productId */}
-                        <td>{orderData.order[productId]}</td>
+        <div className={classes.Order}>
+            <p>Номер заказа: {orderIndex + 1}</p>
+            <p>Дата заказа: {orderData.date}</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название товара</th>
+                        <th>Количество товара</th>
+                        <th>Стоимость за ед.</th>
+                        <th>Всего</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    {Object.keys(orderData.order).map((productId, idx) => (
+                        <tr key={idx}>
+                            <td>{productList[productId].name}</td>
+                            <td>{orderData.order[productId].quantityProd}</td>
+                            <td>{orderData.order[productId].price}</td>
+                            <td>{orderData.order[productId].price * orderData.order[productId].quantityProd}</td>
+                        </tr>
+                    ))}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Итого:</td>
+                        <td>{sum}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     );
 }
 
-// Экспорт компонента Order для использования в других частях приложения
 export default Order;

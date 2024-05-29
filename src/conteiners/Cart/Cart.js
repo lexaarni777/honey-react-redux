@@ -27,7 +27,7 @@ function Cart(){
     const dispatch = useDispatch()
 
     const handleCheckout = () => {
-        dispatch(postOrders({cart, id, orders}))
+        dispatch(postOrders({cart, id, orders, products}))
     }    
 
 
