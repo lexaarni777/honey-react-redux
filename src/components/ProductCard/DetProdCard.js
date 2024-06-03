@@ -12,7 +12,7 @@ import Button from "../UI/Button/Button";
 function DetProdCard() {
     const { isAdmin, isAuth } = useAuth();
     const location = useLocation();
-    const {cart} = useSelector(state => state.cart);
+    const cart = useSelector(state => state.cart);
 
     console.log(location)
     
@@ -31,7 +31,7 @@ function DetProdCard() {
         console.log('2', isAuth, isAdmin),
 
         isAuth ? (
-            <Button onClick={() => dispatch(postCart({ idProd, id, cart }), console.log(cart))}
+            <Button onClick={() => dispatch(postCart({ idProd, id, cart }))}
                 value='Добавить в корзину'>
             </Button>
         ) : null

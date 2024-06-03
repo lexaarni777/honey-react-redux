@@ -21,6 +21,8 @@ function ProductCard(props){
     const {id,isAuth,isAdmin} = useAuth()
     const isLoader = useSelector(state => state.ui)
     const cart = useSelector(state => state.cart)
+    console.log(cart)
+
     // const clickDelitProd = (id) => dispatch(removeProduct(id))
 
     const buttonUpdateProd=()=>{
@@ -37,7 +39,7 @@ function ProductCard(props){
             <NavLink 
                 to={{pathname:'/counter/'+ props.id}}
                 state = {{id: props.id}}>
-                <img src={product[idProd].img} alt="альтернативный текст"></img>   
+                <img src={product[idProd].img} alt={props.name}></img>   
             </NavLink>
             
             <p>Цена за 1 кг: {props.prise} руб</p>          

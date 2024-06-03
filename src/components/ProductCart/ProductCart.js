@@ -6,6 +6,7 @@ import { deleteProdInCart } from "../../store/slices/cart/cartSlice";
 import { useAuth } from "../../hooks/userAuth";
 import Input from "../UI/Input/Input";
 import { imputUpdateProdCart } from "../../store/slices/cart/cartSlice";
+import { NavLink } from "react-router-dom";
 function ProductCard(props){
     
     console.log(props)
@@ -39,7 +40,14 @@ function ProductCard(props){
 
      return(
         <div className={classes.ProductCart}>
-            <div className={classes.Img}><img src={props.img}/></div>
+            <div className={classes.Img}>
+                <NavLink
+                    to={{pathname:'/counter/'+ props.id}}
+                    state = {{id: props.id}}
+                >
+                    <img src={props.img} alt={props.Name}/>
+                </NavLink>
+            </div>
             <div className={classes.Name}>
                 {props.name}
             </div>
