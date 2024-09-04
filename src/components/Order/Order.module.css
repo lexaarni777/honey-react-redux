@@ -1,0 +1,8 @@
+.Order{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 800px;
+    margin: 15px auto;
+    border-bottom: 1px solid #fcb100;;
+}

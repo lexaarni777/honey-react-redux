@@ -1,0 +1,17 @@
+.ExitUser{
+    display: flex;
+
+
+}
+
+.CartUser{
+    margin: 0 20px;
+}
+.User{
+
+
+    margin-right: 20px;
+}
+.imgExit{
+    cursor: pointer;
+}

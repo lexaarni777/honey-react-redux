@@ -1,0 +1,23 @@
+.ProductCard {
+    margin: 0 auto;
+}
+.ProductCard a{
+    margin: 0 auto;
+    display: block;
+    text-decoration: none;
+}
+.ProductCard img{
+    width: 220px;
+}
+.ProductCard img:hover{
+    opacity: 0.9;
+}
+.ProductCard p{
+    margin: 5px auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.nameProd{
+    text-align: center;
+}

@@ -1,0 +1,22 @@
+
+.Header {
+    display: flex;
+    margin: 0 auto;
+    border-bottom: 1px solid #3b312f;
+    
+    background-color: white;
+   
+    
+}
+.Container{
+    width: 960px;
+    margin: 0 auto;
+    
+}
+.headerUpper{
+    display: flex;
+    margin: 0 auto;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+}

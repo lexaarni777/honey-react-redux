@@ -1,0 +1,96 @@
+.About{
+    margin: 0 auto;
+    width: 960px;
+    display: flex;
+    flex-direction: column;
+}
+.AboutHeader{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 10px;
+    border-bottom: 1px solid #fcb100;
+    padding-bottom: 10px;
+}
+.AboutTop{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #fcb100;
+}
+.AboutTopLeft{
+    width: 440px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.AboutTopLeft .Logo{
+    margin: 0 auto;
+    margin-top: 15px;
+}
+.AboutTopRight{
+    width: 440px;
+}
+.AboutTopLeftP1{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid #3b312f;
+    padding-bottom: 10px;
+}
+.AboutTopLeftP2{
+    text-align: center;
+    margin: auto;
+}
+.AboutTopRight p{
+    text-align: justify;
+}
+
+
+.AboutBottom{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.AboutBottomLeft, .AboutBottomRight{
+    width: 440px;
+    margin: auto;
+}
+
+.AboutBottomRight {
+    text-align: center;
+}
+
+.AboutBottomLeft p{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+.AboutBottomIndicators{
+   display: flex;
+   flex-direction: column;
+   width: 440px;
+   margin: auto;
+   font-size: 14px;
+   font-weight: 100;
+}
+.AboutBottomIndicators p{
+    font-size: 14px;
+    font-weight: 100;
+    margin: auto;
+ }
+.IndicatorsTop, .IndicatorsBottom{
+    display: flex;
+    flex-direction: row;
+}
+.IndicatorsTop div, .IndicatorsBottom div{
+    width: 200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+.IndicatorsTop img, .IndicatorsBottom img{
+    margin: 20px 20px 0px 0px;
+}
+

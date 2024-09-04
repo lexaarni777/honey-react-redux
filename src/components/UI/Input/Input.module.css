@@ -1,0 +1,28 @@
+.Input{
+    color: #3b312f;
+    width: 200px;
+    margin-bottom: 16px;
+}
+
+.Input input{
+    width: 100%;
+    padding: 3px;
+    border: 2px solid #3b312f;
+    height: 20px;
+}
+.Input span{
+    position: absolute;
+    font-size: 14px;
+    color: rgb(255, 60, 0);
+}
+.isNotisVisibality{
+    display: none;
+}
+.isVisibality{
+    display: block;
+}
+
+
+.Input.invalid {
+    color: red
+}

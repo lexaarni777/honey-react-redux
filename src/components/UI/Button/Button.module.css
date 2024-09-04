@@ -1,0 +1,47 @@
+.Button{
+  align-items: center;
+  background-color: white;
+  border: 2px solid #3b312f;
+  box-sizing: border-box;
+  color: #3b312f;
+  cursor: pointer;
+  display: block;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 40px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 5px auto;
+  
+}
+
+
+.Button:focus {
+  color: #fcb100;
+}
+
+.Button:hover {
+  border-color: #fcb100;
+  color: #fcb100;
+
+}
+
+.Button:active {
+    background-color: #3b312f;
+}
+
+@media (min-width: 768px) {
+  .Button{
+    min-width: 170px;
+  }
+}
