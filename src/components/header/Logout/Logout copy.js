@@ -107,21 +107,21 @@ const Logout = (props) => {
                                 type='tel'
                                 value={tel}
                                 onChange={(e) => setTel(e.target.value)}
-                                placeholder = 'Ведите номер телефона'
+                                placeholder = 'let'
                             />
                         ):
                             <Input 
                                 type='email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder = 'Ведите email'
+                                placeholder = 'email'
                             />
                         }
                         <Input
                             type='password'
                             value={pass}
                             onChange={(e) => setPass(e.target.value)}
-                            placeholder = 'Введите пароль'
+                            placeholder = 'password'
                         />
                     </div>
                     <Button onClick={() => clickLogout(email, pass)} value="Войти">  </Button>

@@ -27,6 +27,7 @@ const Input = props => {
                 value={props.value}
                 name={props.name}
                 onChange={props.onChange}
+                placeholder={props.placeholder}
                 />
                 {console.log(props.errorMessage)}
                 {
